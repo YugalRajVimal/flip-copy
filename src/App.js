@@ -9,6 +9,7 @@ import TransactionLayout from "./pages/TransactionLayout";
 
 import productsList from "./products.json";
 import PaymentConfirmation from "./pages/PaymentConfirmation";
+import Footer from "./Components/Footer";
 
 function App() {
   // const products = [
@@ -104,12 +105,13 @@ function App() {
             path="/order/:id"
             element={<TransactionLayout products={products} />}
           />
-           <Route
+          <Route
             path="/payment-confirmation"
             element={<PaymentConfirmation />}
           />
           {/* Add more routes here as needed */}
         </Routes>
+        <Footer />
       </BrowserRouter>
     </div>
   );
