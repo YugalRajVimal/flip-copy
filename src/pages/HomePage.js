@@ -39,25 +39,27 @@ export default function FlipkHeader({ products }) {
   return (
     <div className="w-full">
       {/* 🔹 Categories */}
-      <div className="flex items-center justify-around px-10 py-4 bg-white shadow">
-        {categories.map((cat, i) => (
-          <div
-            key={i}
-            className="flex flex-col items-center text-center cursor-pointer"
-          >
-            <div className="relative">
-              <img
-                src={cat.img}
-                alt={cat.name}
-                className="h-14 object-contain"
-              />
+      <div className="w-full bg-white shadow px-4 sm:px-6 py-3 overflow-x-auto">
+        <div className="flex items-center justify-between sm:justify-around gap-6 sm:gap-8 min-w-max sm:min-w-0">
+          {categories.map((cat, i) => (
+            <div
+              key={i}
+              className="flex flex-col items-center text-center cursor-pointer flex-shrink-0"
+            >
+              <div className="relative">
+                <img
+                  src={cat.img}
+                  alt={cat.name}
+                  className="h-12 sm:h-14 object-contain"
+                />
+              </div>
+              <div className="flex items-center text-xs sm:text-sm font-medium mt-1 whitespace-nowrap">
+                {cat.name}
+                {cat.hasDropdown && <ChevronDown className="w-3 h-3 ml-1" />}
+              </div>
             </div>
-            <div className="flex items-center text-sm font-medium mt-1">
-              {cat.name}
-              {cat.hasDropdown && <ChevronDown className="w-3 h-3 ml-1" />}
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
 
       {/* 🔹 Carousel Banner */}
@@ -84,7 +86,7 @@ export default function FlipkHeader({ products }) {
               <img
                 src={banner.img}
                 alt={banner.alt}
-                className="w-full h-[280px] object-cover rounded"
+                className="w-full h-[180px] md:h-[280px] object-cover rounded"
               />
             </SwiperSlide>
           ))}

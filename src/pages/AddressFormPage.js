@@ -25,7 +25,7 @@ export default function AddressForm({ setStep, formData, setFormData }) {
     if (
       !formData.fullName ||
       !formData.mobile ||
-      !formData.email || // Added email to validation
+      !formData.email ||
       !formData.pincode ||
       !formData.city ||
       !formData.house ||
@@ -38,27 +38,29 @@ export default function AddressForm({ setStep, formData, setFormData }) {
       alert("Please enter a valid 10-digit mobile number.");
       return;
     }
-    // Added email format validation
     if (!/^\S+@\S+\.\S+$/.test(formData.email)) {
       alert("Please enter a valid email address.");
       return;
     }
-   
+
     setStep(1);
     console.log("Saved Address:", formData);
   };
 
   return (
-    <div className="bg-[#f1f2f4]  flex flex-col items-center py-8">
+    <div className="bg-[#f1f2f4] min-h-screen flex flex-col items-center py-8 px-4">
       {/* 🔹 Form */}
-      <form onSubmit={handleSubmit} className="w-full max-w-3xl space-y-4 px-6">
+      <form
+        onSubmit={handleSubmit}
+        className="w-full max-w-2xl space-y-4"
+      >
         <input
           type="text"
           name="fullName"
           placeholder="Full Name"
           value={formData.fullName}
           onChange={handleChange}
-          className="w-full border p-3 rounded focus:outline-blue-500"
+          className="w-full border px-3 py-2 md:py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <input
           type="text"
@@ -66,16 +68,15 @@ export default function AddressForm({ setStep, formData, setFormData }) {
           placeholder="Mobile Number"
           value={formData.mobile}
           onChange={handleChange}
-          className="w-full border p-3 rounded focus:outline-blue-500"
+          className="w-full border px-3 py-2 md:py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        {/* Added Email field */}
         <input
           type="email"
           name="email"
           placeholder="Email Address"
-          value={formData.email || ''} // Ensure it's controlled, default to empty string if undefined
+          value={formData.email || ""}
           onChange={handleChange}
-          className="w-full border p-3 rounded focus:outline-blue-500"
+          className="w-full border px-3 py-2 md:py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <input
           type="text"
@@ -83,24 +84,26 @@ export default function AddressForm({ setStep, formData, setFormData }) {
           placeholder="Pincode"
           value={formData.pincode}
           onChange={handleChange}
-          className="w-full border p-3 rounded focus:outline-blue-500"
+          className="w-full border px-3 py-2 md:py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 
-        <div className="grid grid-cols-2 gap-4">
+        {/* 🔹 City & State responsive grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <input
             type="text"
             name="city"
             placeholder="City"
             value={formData.city}
             onChange={handleChange}
-            className="w-full border p-3 rounded focus:outline-blue-500"
+            className="w-full border px-3 py-2 md:py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
           <select
             name="state"
             value={formData.state}
             onChange={handleChange}
-            className="w-full border p-3 rounded focus:outline-blue-500"
+            className="w-full border px-3 py-2 md:py-3 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
+            <option value="">Select State</option>
             {states.map((st) => (
               <option key={st} value={st}>
                 {st}
@@ -115,7 +118,7 @@ export default function AddressForm({ setStep, formData, setFormData }) {
           placeholder="House No., Building Name"
           value={formData.house}
           onChange={handleChange}
-          className="w-full border p-3 rounded focus:outline-blue-500"
+          className="w-full border px-3 py-2 md:py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
         <input
           type="text"
@@ -123,13 +126,13 @@ export default function AddressForm({ setStep, formData, setFormData }) {
           placeholder="Road name, Area, Colony"
           value={formData.road}
           onChange={handleChange}
-          className="w-full border p-3 rounded focus:outline-blue-500"
+          className="w-full border px-3 py-2 md:py-3 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 
         {/* 🔹 Save Button */}
         <button
           type="submit"
-          className="w-full py-3 mt-4 text-white font-semibold bg-gradient-to-r from-orange-500 to-orange-600 rounded shadow"
+          className="w-full py-3 mt-6 text-white font-semibold text-lg bg-gradient-to-r from-orange-500 to-orange-600 rounded-lg shadow hover:opacity-90 transition"
         >
           Save Address
         </button>
