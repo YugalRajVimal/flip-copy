@@ -1,0 +1,112 @@
+import React, { useRef } from "react";
+import {
+  Search,
+  ShoppingCart,
+  User,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import ProductGrid from "../Components/Products";
+
+const categories = [
+  { name: "Minutes", img: "/TopBar/0.webp" },
+  { name: "Mobiles & Tablets", img: "/TopBar/1.webp" },
+  { name: "Fashion", img: "/TopBar/2.webp", hasDropdown: true },
+  { name: "Electronics", img: "/TopBar/3.webp", hasDropdown: true },
+  { name: "Home & Furniture", img: "/TopBar/4.webp", hasDropdown: true },
+  { name: "TVs & Appliances", img: "/TopBar/5.webp" },
+  { name: "Flight Bookings", img: "/TopBar/6.webp" },
+  { name: "Beauty, Food..", img: "/TopBar/7.webp", hasDropdown: true },
+  { name: "Grocery", img: "/TopBar/8.webp" },
+];
+
+const banners = [
+  { img: "/Banner/0.webp", alt: "Save on international flights" },
+  { img: "/Banner/1.webp", alt: "Electronics Fest" },
+  { img: "/Banner/2.webp", alt: "Save on international flights" },
+  { img: "/Banner/3.webp", alt: "Electronics Fest" },
+];
+
+export default function FlipkHeader({ products }) {
+  const prevRef = useRef(null);
+  const nextRef = useRef(null);
+
+  return (
+    <div className="w-full">
+      {/* 🔹 Categories */}
+      <div className="flex items-center justify-around px-10 py-4 bg-white shadow">
+        {categories.map((cat, i) => (
+          <div
+            key={i}
+            className="flex flex-col items-center text-center cursor-pointer"
+          >
+            <div className="relative">
+              <img
+                src={cat.img}
+                alt={cat.name}
+                className="h-14 object-contain"
+              />
+            </div>
+            <div className="flex items-center text-sm font-medium mt-1">
+              {cat.name}
+              {cat.hasDropdown && <ChevronDown className="w-3 h-3 ml-1" />}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* 🔹 Carousel Banner */}
+      <div className="relative mt-2">
+        <Swiper
+          spaceBetween={10}
+          slidesPerView={1}
+          loop
+          autoplay={{ delay: 3000, disableOnInteraction: false }}
+          navigation={{
+            prevEl: prevRef.current,
+            nextEl: nextRef.current,
+          }}
+          onInit={(swiper) => {
+            swiper.params.navigation.prevEl = prevRef.current;
+            swiper.params.navigation.nextEl = nextRef.current;
+            swiper.navigation.init();
+            swiper.navigation.update();
+          }}
+          modules={[Navigation, Autoplay]}
+        >
+          {banners.map((banner, i) => (
+            <SwiperSlide key={i}>
+              <img
+                src={banner.img}
+                alt={banner.alt}
+                className="w-full h-[280px] object-cover rounded"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        {/* Custom Arrows */}
+        <button
+          ref={prevRef}
+          className="absolute top-1/2 left-4 -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-100 z-10"
+        >
+          <ChevronLeft className="w-6 h-6 text-gray-700" />
+        </button>
+        <button
+          ref={nextRef}
+          className="absolute top-1/2 right-4 -translate-y-1/2 bg-white p-2 rounded-full shadow hover:bg-gray-100 z-10"
+        >
+          <ChevronRight className="w-6 h-6 text-gray-700" />
+        </button>
+      </div>
+
+      {/* 🔹 Product Grid */}
+      <ProductGrid products={products} />
+    </div>
+  );
+}
