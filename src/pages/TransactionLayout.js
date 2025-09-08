@@ -29,21 +29,21 @@ const TransactionLayout = ({ products }) => {
   useEffect(() => {
     const initializeSDK = async () => {
       const sdk = await load({
-        mode: "sandbox",
+        mode: "production",
       });
       setCashfree(sdk);
     };
     initializeSDK();
   }, []);
 
-  const getSessionId = async (name, email, phone,amount) => {
+  const getSessionId = async (name, email, phone, amount) => {
     console.log("getSessionId called with:", { name, email, phone });
     if (phone && !phone.startsWith("+91")) {
       phone = `+91${phone}`;
     }
     try {
       const apiUrl = `${process.env.REACT_APP_API_URL}/generate-sessionid`;
-      const requestBody = { name, email, phone,amount };
+      const requestBody = { name, email, phone, amount };
       console.log("Making API call to:", apiUrl);
       console.log("Request body:", requestBody);
 
@@ -144,68 +144,74 @@ const TransactionLayout = ({ products }) => {
   return (
     <div className="h-[95vh] bg-[#f1f2f4] overflow-y-auto">
       {/* 🔹 Step Progress Bar */}
-      <div className="flex items-center justify-center my-4 h-[5vh] px-2 sm:px-4"> {/* Added horizontal padding for smaller screens */}
+      <div className="flex items-center justify-center my-4 h-[5vh] px-2 sm:px-4">
+        {" "}
+        {/* Added horizontal padding for smaller screens */}
         {/* Step 1: Address */}
         <div className="flex items-center">
           <div
-            className={`flex items-center justify-center w-8 h-8 rounded-full text-sm font-bold flex-shrink-0 ${ // Added flex-shrink-0 to prevent circle from shrinking
+            className={`flex items-center justify-center w-8 h-8 rounded-full text-sm font-bold flex-shrink-0 ${
+              // Added flex-shrink-0 to prevent circle from shrinking
               step >= 0 ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-500"
             }`}
           >
             1
           </div>
           <span
-            className={`ml-1 sm:ml-2 text-xs sm:text-sm whitespace-nowrap ${ // Adjusted margin and text size for responsiveness, added whitespace-nowrap
+            className={`ml-1 sm:ml-2 text-xs sm:text-sm whitespace-nowrap ${
+              // Adjusted margin and text size for responsiveness, added whitespace-nowrap
               step >= 0 ? "font-medium text-blue-600" : "text-gray-400"
             }`}
           >
             Address
           </span>
         </div>
-
         {/* Separator 1-2 */}
         <div
-          className={`w-8 sm:w-12 h-0.5 mx-1 sm:mx-2 flex-shrink ${ // Adjusted width and margin for responsiveness, added flex-shrink
+          className={`w-8 sm:w-12 h-0.5 mx-1 sm:mx-2 flex-shrink ${
+            // Adjusted width and margin for responsiveness, added flex-shrink
             step >= 1 ? "bg-blue-600" : "bg-gray-300"
           }`}
         ></div>
-
         {/* Step 2: Order Summary */}
         <div className="flex items-center">
           <div
-            className={`flex items-center justify-center w-8 h-8 rounded-full text-sm font-bold flex-shrink-0 ${ // Added flex-shrink-0
+            className={`flex items-center justify-center w-8 h-8 rounded-full text-sm font-bold flex-shrink-0 ${
+              // Added flex-shrink-0
               step >= 1 ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-500"
             }`}
           >
             2
           </div>
           <span
-            className={`ml-1 sm:ml-2 text-xs sm:text-sm whitespace-nowrap ${ // Adjusted margin and text size for responsiveness, added whitespace-nowrap
+            className={`ml-1 sm:ml-2 text-xs sm:text-sm whitespace-nowrap ${
+              // Adjusted margin and text size for responsiveness, added whitespace-nowrap
               step >= 1 ? "font-medium text-blue-600" : "text-gray-400"
             }`}
           >
             Order Summary
           </span>
         </div>
-
         {/* Separator 2-3 */}
         <div
-          className={`w-8 sm:w-12 h-0.5 mx-1 sm:mx-2 flex-shrink ${ // Adjusted width and margin for responsiveness, added flex-shrink
+          className={`w-8 sm:w-12 h-0.5 mx-1 sm:mx-2 flex-shrink ${
+            // Adjusted width and margin for responsiveness, added flex-shrink
             step >= 2 ? "bg-blue-600" : "bg-gray-300"
           }`}
         ></div>
-
         {/* Step 3: Payment */}
         <div className="flex items-center">
           <div
-            className={`flex items-center justify-center w-8 h-8 rounded-full text-sm font-bold flex-shrink-0 ${ // Added flex-shrink-0
+            className={`flex items-center justify-center w-8 h-8 rounded-full text-sm font-bold flex-shrink-0 ${
+              // Added flex-shrink-0
               step >= 2 ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-500"
             }`}
           >
             3
           </div>
           <span
-            className={`ml-1 sm:ml-2 text-xs sm:text-sm whitespace-nowrap ${ // Adjusted margin and text size for responsiveness, added whitespace-nowrap
+            className={`ml-1 sm:ml-2 text-xs sm:text-sm whitespace-nowrap ${
+              // Adjusted margin and text size for responsiveness, added whitespace-nowrap
               step >= 2 ? "font-medium text-blue-600" : "text-gray-400"
             }`}
           >
