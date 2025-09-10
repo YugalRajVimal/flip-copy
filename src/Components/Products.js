@@ -14,7 +14,7 @@ export default function ProductGrid({ products }) {
               <img
                 src={product.img}
                 alt={product.name}
-                className="h-40 object-contain"
+                className="h-32 md:h-40 object-contain"
               />
             </div>
 
