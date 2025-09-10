@@ -30,6 +30,39 @@
       "3-year warranty included."
     ]
   },
+
+  {
+    "id": 2,
+    "name": "Modern Lounge Chair with Cushioned Seat",
+    "img": "/Products/41.jpg",
+    "gallery": ["", "", "", ""],
+    "discount": "85% Off",
+    "originalPrice": "₹2,666.00",
+    "price": 400,
+    "rating": 4.6,
+    "reviews": 324,
+    "assured": true,
+    "timer": "2hr 15min",
+    "delivery": "Free Delivery in 3 Days",
+    "brand": "UrbanCraft",
+    "colour": "Ivory White",
+    "material": "Fabric & Solid Wood",
+    "dimensions": "27 x 24 x 30 inches",
+    "size": "Standard",
+    "backStyle": "Curved",
+    "specialFeature": "Ergonomic backrest, Minimalist design",
+    "itemWeight": "8.5 Kilograms",
+    "frameMaterial": "Walnut Wood",
+    "maxWeight": "120 Kilograms",
+    "style": "Scandinavian Modern",
+    "about": [
+      "Premium fabric with soft cushioning.",
+      "Walnut wood frame for durability.",
+      "Elegant design suitable for living rooms.",
+      "Compact and lightweight, easy to move."
+    ]
+  },
+
   {
     "id": 3,
     "name": "Levi’s Men’s Slim Fit Jeans",
@@ -307,6 +340,37 @@
       "Made with durable materials for long-lasting use.",
       "Stylish design fits into all environments.",
       "Trusted by thousands of users worldwide."
+    ]
+  },
+  {
+    "id": 12,
+    "name": "Classic Wooden Accent Chair with Cushions",
+    "img": "/Products/42.jpg",
+    "gallery": ["", "", "", ""],
+    "discount": "88% Off",
+    "originalPrice": "₹2,500.00",
+    "price": 300,
+    "rating": 4.3,
+    "reviews": 587,
+    "assured": true,
+    "timer": "1hr 45min",
+    "delivery": "Free Delivery in 4 Days",
+    "brand": "WoodArtistry",
+    "colour": "Beige & Natural Wood",
+    "material": "Cotton Linen & Teak Wood",
+    "dimensions": "29 x 25 x 32 inches",
+    "size": "Standard",
+    "backStyle": "Slatted",
+    "specialFeature": "Removable cushions, Sturdy frame",
+    "itemWeight": "10.2 Kilograms",
+    "frameMaterial": "Teak Wood",
+    "maxWeight": "130 Kilograms",
+    "style": "Mid-Century Modern",
+    "about": [
+      "Breathable cotton linen fabric.",
+      "Removable and washable cushions.",
+      "Slatted wooden back design for ventilation.",
+      "Perfect for living room, balcony, or office corners."
     ]
   },
   {
