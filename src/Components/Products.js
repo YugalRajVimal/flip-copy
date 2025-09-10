@@ -2,12 +2,12 @@ import React from "react";
 
 export default function ProductGrid({ products }) {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3  gap-4 p-6 bg-gray-100">
+    <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-1 md:gap-4 p-2  md:p-6 bg-gray-100">
       {products.map((product) => (
         <a href={`/product/${product.id}`}>
           <div
             key={product.id}
-            className="bg-white border rounded-md h-full p-4 flex flex-col shadow hover:shadow-lg transition relative"
+            className="bg-white border rounded-md h-full p-1 md:p-4 flex flex-col shadow hover:shadow-lg transition relative"
           >
             {/* Image */}
             <div className="flex justify-center">
@@ -25,18 +25,18 @@ export default function ProductGrid({ products }) {
 
             {/* Price & Discount */}
             <div className="mt-2 flex items-center gap-2">
-              <span className="text-green-600 font-semibold text-sm">
+              <span className="text-green-600 font-semibold text-xs md:text-sm">
                 {product.discount} Off
               </span>
-              <span className="line-through text-gray-500 text-sm">
+              <span className="line-through text-gray-500 text-xs md:text-sm">
                 {product.originalPrice}
               </span>
             </div>
 
             {/* Final Price */}
             <div className="flex items-center justify-between gap-2 mt-1">
-              <div className="text-lg text-left font-bold text-gray-900">
-              ₹{product.price}
+              <div className="text-md md:text-lg text-left font-bold text-gray-900">
+                ₹{product.price}
               </div>
               {/* Assured Badge */}
               {product.assured && (
@@ -48,7 +48,7 @@ export default function ProductGrid({ products }) {
               <span className="bg-green-600 text-white text-xs px-1.5 py-0.5 rounded flex items-center gap-1 font-medium">
                 {product.rating} <span>★</span>
               </span>
-              <span className="text-sm text-gray-600">
+              <span className="text-xs md:text-sm text-gray-600">
                 {product.reviews} Ratings
               </span>
             </div>

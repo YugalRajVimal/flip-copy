@@ -48,7 +48,7 @@ export default function FlipkHeader({ products }) {
   };
 
   const [remainingSeconds, setRemainingSeconds] = useState(() =>
-    parseTimeStringToSeconds("3min 00sec")
+    parseTimeStringToSeconds("15min 00sec")
   );
 
   // Format time
