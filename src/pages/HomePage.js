@@ -32,6 +32,14 @@ const banners = [
   { img: "/Banner/3.webp", alt: "Electronics Fest" },
 ];
 
+// Format time
+const formatTime = (totalSeconds) => {
+  if (totalSeconds <= 0) return "0min 00sec";
+  const minutes = Math.floor(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return `${minutes}min ${seconds < 10 ? "0" : ""}${seconds}sec`;
+};
+
 export default function FlipkHeader({ products }) {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
@@ -105,6 +113,11 @@ export default function FlipkHeader({ products }) {
         >
           <ChevronRight className="w-6 h-6 text-gray-700" />
         </button>
+      </div>
+
+      {/* 🔹 Offer Timer */}
+      <div className="text-black font-semibold text-base sm:text-lg my-4 text-center">
+        Live Sale : <span className="text-orange-500"> {formatTime(180)} </span>
       </div>
 
       {/* 🔹 Product Grid */}
