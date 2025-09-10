@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import {
   Search,
   ShoppingCart,
@@ -32,17 +32,42 @@ const banners = [
   { img: "/Banner/3.webp", alt: "Electronics Fest" },
 ];
 
-// Format time
-const formatTime = (totalSeconds) => {
-  if (totalSeconds <= 0) return "0min 00sec";
-  const minutes = Math.floor(totalSeconds / 60);
-  const seconds = totalSeconds % 60;
-  return `${minutes}min ${seconds < 10 ? "0" : ""}${seconds}sec`;
-};
-
 export default function FlipkHeader({ products }) {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
+
+  // Parse "6min 20sec" → total seconds
+  const parseTimeStringToSeconds = (timeString) => {
+    const parts = timeString?.match(/(\d+)min\s*(\d+)sec/);
+    if (parts?.length === 3) {
+      const minutes = parseInt(parts[1], 10);
+      const seconds = parseInt(parts[2], 10);
+      return minutes * 60 + seconds;
+    }
+    return 0;
+  };
+
+  const [remainingSeconds, setRemainingSeconds] = useState(() =>
+    parseTimeStringToSeconds("3min 00sec")
+  );
+
+  // Format time
+  const formatTime = (totalSeconds) => {
+    if (totalSeconds <= 0) return "0min 00sec";
+    const minutes = Math.floor(totalSeconds / 60);
+    const seconds = totalSeconds % 60;
+    return `${minutes}min ${seconds < 10 ? "0" : ""}${seconds}sec`;
+  };
+
+  useEffect(() => {
+    if (remainingSeconds <= 0) return;
+
+    const timerId = setInterval(() => {
+      setRemainingSeconds((prev) => (prev > 0 ? prev - 1 : 0));
+    }, 1000);
+
+    return () => clearInterval(timerId);
+  }, [remainingSeconds]);
 
   return (
     <div className="w-full">
@@ -117,7 +142,11 @@ export default function FlipkHeader({ products }) {
 
       {/* 🔹 Offer Timer */}
       <div className="text-black font-semibold text-base sm:text-lg my-4 text-center">
-        Live Sale : <span className="text-orange-500"> {formatTime(180)} </span>
+        Live Sale :{" "}
+        <span className="text-orange-500">
+          {" "}
+          {formatTime(remainingSeconds)}{" "}
+        </span>
       </div>
 
       {/* 🔹 Product Grid */}
